@@ -153,9 +153,16 @@ public class MedicoGerenciaBD extends GerenciaBD {
         return dados;
     }
     
-    
-    
-    
-
- 
+    public Medico getMedicoPorCod(int cod) {
+    	String sql = "SELECT * FROM medico WHERE codmedico = ?";
+    	try {
+			PreparedStatement stm = this.conexao.prepareStatement(sql);
+			stm.setInt(1, cod);
+			ResultSet rs = stm.executeQuery();
+			Medico medico = new Medico();
+			medico.setCodmedico(rs.getInt("codmedico"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
 }
