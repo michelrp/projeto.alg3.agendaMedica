@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="dist/lib/beansbinding-1.2.1.jar"/>
+	<classpathentry kind="lib" path="dist/lib/eclipselink-2.3.2.jar"/>
+	<classpathentry kind="lib" path="dist/lib/javax.persistence-2.0.3.jar"/>
+	<classpathentry kind="lib" path="dist/lib/org.eclipse.persistence.jpa.jpql_1.0.1.jar"/>
+	<classpathentry kind="lib" path="dist/lib/postgresql-9.2-1002.jdbc4.jar"/>
+	<classpathentry kind="lib" path="dist/projeto.alg3.agendaMedica.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
