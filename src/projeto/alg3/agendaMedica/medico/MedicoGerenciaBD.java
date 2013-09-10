@@ -161,8 +161,15 @@ public class MedicoGerenciaBD extends GerenciaBD {
 			ResultSet rs = stm.executeQuery();
 			Medico medico = new Medico();
 			medico.setCodmedico(rs.getInt("codmedico"));
+			medico.setConvenio(rs.getString("convenio"));
+			medico.setCrm(rs.getString("crm"));
+			medico.setEndereco(rs.getString("endereco"));
+			medico.setEspecialidade(rs.getString("especialidade"));
+			medico.setNome(rs.getString("nome"));
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return medico;
     }
 }

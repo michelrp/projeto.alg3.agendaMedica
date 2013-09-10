@@ -152,6 +152,25 @@ public class PacienteGerenciaBD extends GerenciaBD {
         return dados;
     }
     
-    
-    
+    public Paciente getPacientePorCod(int cod) {
+    	try {
+    		String sql = "SELECT * FROM paciente WHERE codpaciente = ?";
+        	PreparedStatement stm = this.conexao.prepareStatement(sql);
+			stm.setInt(1, cod);
+			
+			ResultSet rs = stm.executeQuery();
+			
+			Paciente paciente = new Paciente();
+			paciente.setCodpaciente(rs.getInt("codpaciente"));
+			paciente.setConvenio(rs.getString("convenio"));
+			paciente.setCpf(rs.getString("cpf"));
+			paciente.setEndereco(rs.getString("endereco"));
+			paciente.setNome(rs.getString("nome"));
+			paciente.setSexo(rs.getString("sexo"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    	
+    	return paciente;
+    }
 }

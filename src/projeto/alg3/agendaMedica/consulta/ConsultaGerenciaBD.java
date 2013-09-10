@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import projeto.alg3.agendaMedica.GerenciaBD;
 import projeto.alg3.agendaMedica.Main;
@@ -77,18 +78,21 @@ public class ConsultaGerenciaBD extends GerenciaBD {
     @Override
     public ArrayList consultar() {
     	String sql = "SELECT * FROM consulta";
+    	ArrayList listaConsulta = new ArrayList();
+		Consulta consulta;
+		MedicoGerenciaBD medGerencia = new MedicoGerenciaBD();
+		PacienteGerenciaBD pacGerencia = new PacienteGerenciaBD();
     	try {
 			PreparedStatement stm = this.conexao.prepareStatement(sql);
 			ResultSet rs = stm.executeQuery();
-			ArrayList listaConsulta = new ArrayList();
-			Consulta consulta;
-			MedicoGerenciaBD medGerencia = new MedicoGerenciaBD();
-			PacienteGerenciaBD pacGerencia = new PacienteGerenciaBD();
+			
 			while (rs.next()) {
+				Medico medico = medGerencia.getMedicoPorCod(rs.getInt("codmedico"));
+				Paciente paciente = pacGerencia.getPacientePorCod(rs.getInt("codpaciente"));
 				consulta = new Consulta();
 				consulta.setCodconsulta(rs.getInt("codconsulta"));
-				consulta.setCodmedico(rs.getInt("codmedico"));
-				consulta.setCodpaciente(rs.getInt("codpaciente"));
+				consulta.setCodmedico(medico);
+				consulta.setCodpaciente(paciente);
 				consulta.setDataconsulta(rs.getString("dataconsulta"));
 				consulta.setHoraconsulta(rs.getString("horaconsulta"));
 				consulta.setLaudo(rs.getString("laudo"));
@@ -98,6 +102,7 @@ public class ConsultaGerenciaBD extends GerenciaBD {
 			e.printStackTrace();
 		}
     	
+    	return listaConsulta;
     }
     
     
